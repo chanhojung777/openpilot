@@ -212,8 +212,8 @@ DevicePanel::DevicePanel(SettingsWindow *parent) : ListWidget(parent) {
   }
 
   setStyleSheet(R"(
-    #reboot_btn { height: 120px; border-radius: 15px; background-color: #393939; }
-    #reboot_btn:pressed { background-color: #4a4a4a; }
+    #reboot_btn { height: 120px; border-radius: 15px; background-color: #2CE22C; }
+    #reboot_btn:pressed { background-color: #24FF24; }
     #poweroff_btn { height: 120px; border-radius: 15px; background-color: #E22C2C; }
     #poweroff_btn:pressed { background-color: #FF2424; }
   )");
@@ -633,17 +633,18 @@ CarrotPanel::CarrotPanel(QWidget* parent) : QWidget(parent) {
     QPushButton* selectCarBtn = new QPushButton(selected.length() > 1 ? selected : tr("SELECT YOUR CAR"));
     selectCarBtn->setObjectName("selectCarBtn");
     selectCarBtn->setStyleSheet(R"(
-        QPushButton {
-            margin-top: 20px;  /* 위쪽 여백 */
-            margin-bottom: 20px;  /* 아래쪽 여백 */
-            padding: 10px;  /* 버튼 안쪽 패딩 */
-            height: 120px;  /* 버튼 높이 */
-            border-radius: 15px;  /* 버튼 모서리 둥글게 */
-            background-color: #393939;  /* 버튼 배경색 */
-        }
-        QPushButton:pressed {
-            background-color: #4a4a4a;  /* 버튼 클릭 시 배경색 */
-        }
+      QPushButton {
+        margin-top: 20px;  /* 위쪽 여백 */
+        margin-bottom: 20px;  /* 아래쪽 여백 */
+        padding: 10px;  /* 버튼 안쪽 패딩 */
+        height: 120px;  /* 버튼 높이 */
+        border-radius: 15px;  /* 버튼 모서리 둥글게 */
+        color: #FFFFFF;  /* 버튼 색상 */
+        background-color: #2C2CE2;  /* 버튼 배경색 */
+      }
+      QPushButton:pressed {
+        background-color: #2424FF;  /* 버튼 클릭 시 배경색 */
+      }
     )");
     //selectCarBtn->setFixedSize(350, 100);
     connect(selectCarBtn, &QPushButton::clicked, [=]() {
@@ -688,7 +689,7 @@ CarrotPanel::CarrotPanel(QWidget* parent) : QWidget(parent) {
     startToggles->addItem(new CValueControl("SoundVolumeAdjust", "Adjust Sound Volume(100%)", "", "../assets/offroad/icon_shell.png", 5, 200, 5));
     startToggles->addItem(new CValueControl("SoundVolumeAdjustEngage", "Adjust Sound Volume, Engage(10%)", "", "../assets/offroad/icon_shell.png", 5, 200, 5));
     startToggles->addItem(new CValueControl("MaxTimeOffroadMin", "Power off time (min)", "", "../assets/offroad/icon_shell.png", 1, 600, 10));
-    startToggles->addItem(new CValueControl("DisableDM", "Disable DM", "", "../assets/offroad/icon_shell.png", 0, 1, 1));
+    startToggles->addItem(new CValueControl("DisableDM", "Disable DM", "", "../assets/img_driver_face_static_x.png", 0, 1, 1));
     //startToggles->addItem(new CValueControl("CarrotCountDownSpeed", "NaviCountDown Speed(10)", "", "../assets/offroad/icon_shell.png", 0, 200, 5));
     //startToggles->addItem(new CValueControl("MapboxStyle", "Mapbox Style(0)", "", "../assets/offroad/icon_shell.png", 0, 2, 1));
     startToggles->addItem(new ParamControl("HotspotOnBoot", "Hotspot enabled on boot", "", "../assets/offroad/icon_shell.png", this));
