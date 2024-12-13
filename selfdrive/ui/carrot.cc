@@ -2369,6 +2369,9 @@ public:
         }
     }
     void drawDeviceInfo(const UIState* s) {
+#ifdef WSL2
+        return;
+#endif
         makeDeviceInfo(s);
         if (params.getInt("ShowDebugUI") == 0) return;
 
