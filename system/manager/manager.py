@@ -79,6 +79,7 @@ def get_default_params():
     ("CruiseButtonTest3", "1"),      
     ("CruiseSpeedUnit", "10"),
     ("MyDrivingMode", "3"),      
+    ("MyDrivingModeAuto", "0"),      
     ("CruiseMaxVals1", "200"),
     ("CruiseMaxVals2", "160"),
     ("CruiseMaxVals3", "130"),
