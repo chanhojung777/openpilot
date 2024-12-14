@@ -90,7 +90,8 @@ class CarrotPlanner:
     self.mySafeModeFactor = 0.8
     self.myHighModeFactor = 1.2
     self.drivingModeDetector = DrivingModeDetector()    
-
+    self.mySafeFactor = 1.0
+    
     self.tFollowGap1 = 1.1
     self.tFollowGap2 = 1.3
     self.tFollowGap3 = 1.45
