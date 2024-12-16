@@ -107,7 +107,7 @@ class CarrotPlanner:
     self.cruiseMaxVals5 = 0.7
     self.cruiseMaxVals6 = 0.6
 
-
+    self.trafficLightDetectMode = 2 # 0: None, 1:Stop, 2:Stop&Go
     self.trafficState_carrot = 0
     self.carrot_stay_stop = False
 
@@ -136,6 +136,7 @@ class CarrotPlanner:
 
     if self.params_count == 10:
       self.myHighModeFactor = 1.2 #float(self.params.get_int("MyHighModeFactor")) / 100.
+      self.trafficLightDetectMode = self.params.get_int("TrafficLightDetectMode") # 0: None, 1:Stop, 2:Stop&Go
     elif self.params_count == 20:
       self.tFollowGap1 = self.params.get_float("TFollowGap1") / 100.
       self.tFollowGap2 = self.params.get_float("TFollowGap2") / 100.
@@ -324,7 +325,9 @@ class CarrotPlanner:
     #self.check_model_stopping(v, v_ego, self.xStop, y)
     self.check_model_stopping(v, v_ego, x[-1], y, radarstate.leadOne.dRel if lead_detected else 1000)
 
-    if self.myDrivingMode == DrivingMode.High:
+    if self.myDrivingMode == DrivingMode.High or self.trafficLightDetectMode == 0:
+      self.trafficState = TrafficState.off
+    if self.trafficState == TrafficState.green and self.trafficLightDetectMode == 1:  # Stopping only
       self.trafficState = TrafficState.off
     
     #self.update_user_control()
