@@ -645,29 +645,42 @@ CarrotPanel::CarrotPanel(QWidget* parent) : QWidget(parent) {
     )");
     //selectCarBtn->setFixedSize(350, 100);
     connect(selectCarBtn, &QPushButton::clicked, [=]() {
-      QString selected = QString::fromStdString(Params().get("CarSelected3"));
+        QString selected = QString::fromStdString(Params().get("CarSelected3"));
 
-      QStringList cars = {"[ Not Selected ]"};
-      QStringList items = get_list("/data/params/d/SupportedCars");
-      QStringList items_gm = get_list("/data/params/d/SupportedCars_gm");
-      QStringList items_toyota = get_list("/data/params/d/SupportedCars_toyota");
-      cars.append(items);
-      cars.append(items_gm);
-      cars.append(items_toyota);
+        QStringList all_items = get_list((QString::fromStdString(Params().getParamPath()) + "/SupportedCars").toStdString().c_str());
+        all_items.append(get_list((QString::fromStdString(Params().getParamPath()) + "/SupportedCars_gm").toStdString().c_str()));
+        all_items.append(get_list((QString::fromStdString(Params().getParamPath()) + "/SupportedCars_toyota").toStdString().c_str()));
 
-      QString selectedCar = MultiOptionDialog::getSelection("Select your car", cars, ((selected == "[ Not Selected ]") || (selected.length() == 0)) ? cars[0] : selected, this);
-      if (!selectedCar.isEmpty()) {
-        if (selectedCar == "[ Not Selected ]") {
-          Params().remove("CarSelected3");
-        } else {
-          Params().put("CarSelected3", selectedCar.toStdString());
-          ConfirmationDialog::alert(selectedCar, this);
+        QMap<QString, QStringList> car_groups;
+        for (const QString& car : all_items) {
+            QStringList parts = car.split(" ", Qt::SkipEmptyParts);
+            if (!parts.isEmpty()) {
+                QString manufacturer = parts.first();
+                car_groups[manufacturer].append(car);
+            }
         }
-      }
 
-      selected = QString::fromStdString(Params().get("CarSelected3"));
-      selectCarBtn->setText(((selected == "[ Not Selected ]") || (selected.length() == 0)) ? tr("SELECT YOUR CAR") : selected);
-    });
+        QStringList manufacturers = car_groups.keys();
+        QString selectedManufacturer = MultiOptionDialog::getSelection("Select Manufacturer", manufacturers, manufacturers.isEmpty() ? "" : manufacturers.first(), this);
+
+        if (!selectedManufacturer.isEmpty()) {
+            QStringList cars = car_groups[selectedManufacturer];
+            QString selectedCar = MultiOptionDialog::getSelection("Select your car", cars, selected, this);
+
+            if (!selectedCar.isEmpty()) {
+                if (selectedCar == "[ Not Selected ]") {
+                    Params().remove("CarSelected3");
+                }
+                else {
+                    printf("Selected Car: %s\n", selectedCar.toStdString().c_str());
+                    Params().put("CarSelected3", selectedCar.toStdString());
+                    ConfirmationDialog::alert(selectedCar, this);
+                }
+                selected = QString::fromStdString(Params().get("CarSelected3"));
+                selectCarBtn->setText((selected.isEmpty() || selected == "[ Not Selected ]") ? tr("SELECT YOUR CAR") : selected);
+            }
+        }
+        });
 
     startToggles->addItem(selectCarBtn);
     startToggles->addItem(new ParamControl("HyundaiCameraSCC", "HYUNDAI: CAMERA SCC", "Connect the SCC's CAN line to CAM", "../assets/offroad/icon_shell.png", this));

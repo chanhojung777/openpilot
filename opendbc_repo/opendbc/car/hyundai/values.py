@@ -338,9 +338,9 @@ class CAR(Platforms):
     CarSpecs(mass=1948, wheelbase=2.97, steerRatio=14.26, tireStiffnessFactor=0.65),
     flags=HyundaiFlags.EV,
   )
-  HYUNDAI_IONIQ5_PE = HyundaiCanFDPlatformConfig(
+  HYUNDAI_IONIQ_5_PE = HyundaiCanFDPlatformConfig(
     [
-      HyundaiCarDocs("HYUNDAI IONIQ 5 PE (NE1)", car_parts=CarParts.common([CarHarness.hyundai_q])),
+      HyundaiCarDocs("Hyundai IONIQ 5 PE (NE1)", car_parts=CarParts.common([CarHarness.hyundai_q])),
       HyundaiCarDocs("Hyundai Ioniq 5 PE (with HDA II) 2024", "Highway Driving Assist II", car_parts=CarParts.common([CarHarness.hyundai_q])),
     ],
     CarSpecs(mass=2012, wheelbase=3.0, steerRatio=14.26, tireStiffnessFactor=0.65),
@@ -393,14 +393,14 @@ class CAR(Platforms):
   )
   HYUNDAI_SANTAFE_MX5 = HyundaiCanFDPlatformConfig(
     [
-      HyundaiCarDocs("HYUNDAI SANTAFE (MX5)", car_parts=CarParts.common([CarHarness.hyundai_k])),
+      HyundaiCarDocs("Hyundai SANTAFE (MX5)", car_parts=CarParts.common([CarHarness.hyundai_k])),
     ],
     CarSpecs(mass=1910, wheelbase=2.76, steerRatio=15.8, tireStiffnessFactor=0.82),
     flags=HyundaiFlags.ANGLE_CONTROL,
   )
   HYUNDAI_SANTAFE_MX5_HEV = HyundaiCanFDPlatformConfig(
     [
-      HyundaiCarDocs("HYUNDAI SANTAFE HYBRID (MX5)", car_parts=CarParts.common([CarHarness.hyundai_k])),
+      HyundaiCarDocs("Hyundai SANTAFE HYBRID (MX5)", car_parts=CarParts.common([CarHarness.hyundai_k])),
     ],
     HYUNDAI_SANTAFE_MX5.specs,
     flags=HyundaiFlags.ANGLE_CONTROL,
@@ -556,7 +556,7 @@ class CAR(Platforms):
   )
   KIA_EV6_PE = HyundaiCanFDPlatformConfig(
     [
-      HyundaiCarDocs("KIA EV6 PE (CV1)", car_parts=CarParts.common([CarHarness.hyundai_p])),
+      HyundaiCarDocs("Kia EV6 PE (CV1)", car_parts=CarParts.common([CarHarness.hyundai_p])),
       HyundaiCarDocs("Kia EV6 PE (with HDA II) 2025", "Highway Driving Assist II", car_parts=CarParts.common([CarHarness.hyundai_p]))
     ],
     CarSpecs(mass=2055, wheelbase=2.9, steerRatio=16, tireStiffnessFactor=0.65),
@@ -706,7 +706,7 @@ class CAR(Platforms):
   )
   KIA_EV9 = HyundaiCanFDPlatformConfig(
     [
-      HyundaiCarDocs("KIA EV9 (MV)", car_parts=CarParts.common([CarHarness.hyundai_k])),
+      HyundaiCarDocs("Kia EV9 (MV)", car_parts=CarParts.common([CarHarness.hyundai_k])),
     ],
     CarSpecs(mass=2625, wheelbase=3.1, steerRatio=16.02),
     flags=HyundaiFlags.EV | HyundaiFlags.ANGLE_CONTROL,
