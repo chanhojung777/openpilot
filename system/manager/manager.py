@@ -301,9 +301,10 @@ def manager_thread() -> None:
 
 def main() -> None:
   manager_init()
-  os.system("python /data/openpilot/opendbc/car/hyundai/values.py > /data/params/d/SupportedCars")
-  os.system("python /data/openpilot/opendbc/car/gm/values.py > /data/params/d/SupportedCars_gm")
-  os.system("python /data/openpilot/opendbc/car/toyota/values.py > /data/params/d/SupportedCars_toyota")
+  print(f"python ../../opendbc/car/hyundai/values.py > {Params().get_param_path()}/SupportedCars")
+  os.system(f"python ../../opendbc/car/hyundai/values.py > {Params().get_param_path()}/SupportedCars")
+  os.system(f"python ../../opendbc/car/gm/values.py > {Params().get_param_path()}/SupportedCars_gm")
+  os.system(f"python ../../opendbc/car/toyota/values.py > {Params().get_param_path()}/SupportedCars_toyota")
 
   if os.getenv("PREPAREONLY") is not None:
     return
