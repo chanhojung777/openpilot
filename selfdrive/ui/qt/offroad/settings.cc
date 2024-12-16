@@ -674,6 +674,9 @@ CarrotPanel::CarrotPanel(QWidget* parent) : QWidget(parent) {
                 else {
                     printf("Selected Car: %s\n", selectedCar.toStdString().c_str());
                     Params().put("CarSelected3", selectedCar.toStdString());
+                    QTimer::singleShot(1000, []() {
+                        Params().putBool("SoftRestartTriggered", true);
+                    });
                     ConfirmationDialog::alert(selectedCar, this);
                 }
                 selected = QString::fromStdString(Params().get("CarSelected3"));
