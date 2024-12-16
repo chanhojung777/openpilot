@@ -653,7 +653,7 @@ CarrotPanel::CarrotPanel(QWidget* parent) : QWidget(parent) {
 
         QMap<QString, QStringList> car_groups;
         for (const QString& car : all_items) {
-            QStringList parts = car.split(" ", Qt::SkipEmptyParts);
+            QStringList parts = car.split(" ", QString::SkipEmptyParts);
             if (!parts.isEmpty()) {
                 QString manufacturer = parts.first();
                 car_groups[manufacturer].append(car);
