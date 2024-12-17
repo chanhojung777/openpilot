@@ -308,7 +308,7 @@ def create_acc_commands(packer, enabled, accel, jerk, idx, hud_control, set_spee
 
   return commands
 
-def create_acc_opt(CS, packer, CP):
+def create_acc_opt(packer, CP):
   commands = []
 
   scc13_values = {
